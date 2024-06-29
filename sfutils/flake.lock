@@ -1,0 +1,40 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1719506693,
+        "narHash": "sha256-C8e9S7RzshSdHB7L+v9I51af1gDM5unhJ2xO1ywxNH8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b2852eb9365c6de48ffb0dc2c9562591f652242a",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "ref": "nixos-unstable",
+        "type": "indirect"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "sfutils-src": "sfutils-src"
+      }
+    },
+    "sfutils-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1713989348,
+        "narHash": "sha256-O3iZnpQ9f+tci0rL2wMYAJp8Sv7FBVnxDbB5kIVcmb4=",
+        "type": "tarball",
+        "url": "https://www.xilinx.com/content/dam/xilinx/publications/solarflare/drivers-software/linux/misc/SF-105095-LS-68-linux-vmware-esx-utilities-source.zip"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://www.xilinx.com/content/dam/xilinx/publications/solarflare/drivers-software/linux/misc/SF-105095-LS-68-linux-vmware-esx-utilities-source.zip"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

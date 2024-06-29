@@ -1,0 +1,12 @@
+\#.*
+.*\~
+*\~
+result
+result-*
+.DS_Store
+tmp
+*.tmp
+*.log
+.direnv
+.envrc
+.envrc.private
