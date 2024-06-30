@@ -10,15 +10,28 @@
     sfutils-src.flake = false;
   };
 
-  outputs = { self, nixpkgs, sfutils-src }: let
-    sfutils-build = { src = sfutils-src; version = "8.3.3.1000"; };
-  in {
-    packages.aarch64-linux.sfutils = nixpkgs.legacyPackages.aarch64.callPackage ./default.nix sfutils-build;
-    packages.aarch64-darwin.sfutils = nixpkgs.legacyPackages.aarch64-darwin.callPackage ./default.nix sfutils-build;
-    packages.x86_64-linux.sfutils = nixpkgs.legacyPackages.x86_64-linux.callPackage ./default.nix sfutils-build;
+  outputs =
+    {
+      self,
+      nixpkgs,
+      sfutils-src,
+    }:
+    let
+      sfutils-build = {
+        src = sfutils-src;
+        version = "8.3.3.1000";
+      };
+    in
+    {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+      formatter.aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.nixfmt-rfc-style;
 
-    packages.aarch64-darwin.default = self.packages.aarch64-darwin.sfutils;
-    packages.aarch64-linux.default = self.packages.aarch64-linux.sfutils;
-    packages.x86_64-linux.default = self.packages.aarch64-darwin.sfutils;
-  };
+      packages.aarch64-linux.sfutils = nixpkgs.legacyPackages.aarch64-linux.callPackage ./default.nix sfutils-build;
+      packages.aarch64-darwin.sfutils = nixpkgs.legacyPackages.aarch64-darwin.callPackage ./default.nix sfutils-build;
+      packages.x86_64-linux.sfutils = nixpkgs.legacyPackages.x86_64-linux.callPackage ./default.nix sfutils-build;
+
+      packages.aarch64-darwin.default = self.packages.aarch64-darwin.sfutils;
+      packages.aarch64-linux.default = self.packages.aarch64-linux.sfutils;
+      packages.x86_64-linux.default = self.packages.x86_64-linux.sfutils;
+    };
 }
